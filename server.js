@@ -8,9 +8,10 @@ var express = require('express'),
 //        our github data on the server.
 
 function proxyGitHub(request, response) {
-  console.log('Routing Github request for', request.params[0]);
   (requestProxy({
-    url: 'https://api.github.com/' + request.params[0]
+    url: 'https://api.github.com/' + request.params[0],
+//    url: 'https://api.github.com/' + request.params[0] + '?per_page=10&sort=updated',
+    data: '&access_token=' + process.env.ACCESS_TOKEN_GITHUB
   }))(request, response);
 };
 
